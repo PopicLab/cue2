@@ -30,7 +30,6 @@ def main():
         print("[ERROR] Unknown command: '%s'" % args.command)
         parser.print_usage()
         exit(1)
-
     cue_module = importlib.import_module("cue.cli." + args.command)
     cue_module.main(args.config)
 
