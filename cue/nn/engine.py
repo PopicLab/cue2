@@ -21,13 +21,14 @@
 # SOFTWARE.
 
 
+from cue.img import plotting
+import cue.img.constants as constants
+import cue.img.filters as image_filters
+import cue.img.stats
+import cue.nn.coco_metrics as coco_metrics
+from collections import defaultdict
 import torch
-import engine.coco_metrics as coco_metrics
-from img import plotting
-import img.constants as constants
-import img.filters as image_filters
-from img.data_metrics import DatasetStats
-
+import logging
 
 class MetricTracker:
     def __init__(self, report_interval, prefix=""):
@@ -50,7 +51,7 @@ class MetricTracker:
 
 def train(model, optimizer, data_loader, config, epoch, collect_data_metrics=False):
     metrics_tracker = MetricTracker(config.report_interval, prefix="TRAIN EPOCH %d" % epoch)
-    data_stats = DatasetStats("TRAIN", config)
+    data_stats = cue.img.stats.DatasetStats("TRAIN", config)
     output_dir = config.epoch_dirs[epoch]
     model.train()
     torch.set_grad_enabled(True)
@@ -90,7 +91,7 @@ def train(model, optimizer, data_loader, config, epoch, collect_data_metrics=Fal
 def evaluate(model, data_loader, config, device, output_dir, collect_data_metrics=False, given_ground_truth=False,
              filters=True, coco=True):
     coco_evaluator = coco_metrics.CocoKeypointEvaluator(range(1, len(config.classes)), 1, config.classes, output_dir)
-    data_stats = DatasetStats("EVAL", config)
+    data_stats = cue.img.stats.DatasetStats("EVAL", config)
     data_loader.shuffle = False
     model.eval()
     torch.set_grad_enabled(False)
