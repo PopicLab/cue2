@@ -1,0 +1,5 @@
+bam: "/path/to/bam"
+vcf: "/path/to/truth/vcf"
+fa: "/path/to/reference/fasta"
+chr_names: null
+n_cpus: 24

@@ -1,0 +1,4 @@
+dataset_dirs: ["/path/to/dataset1", "/path/to/dataset2"]
+dataset_lens: [10000, 1000] # number of images to select from each dataset
+validation_ratio: 0.1  # fraction of the data to use for validation
+gpu_ids: [0] # id of the GPU to use for training

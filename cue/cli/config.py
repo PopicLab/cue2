@@ -32,6 +32,7 @@ SHARED_DEFAULTS = {
     'logging_level': "INFO",
     'class_set': "SINGLE5G",
     'channel_set': "LONG",
+    'channel_set_origin': "LONG",
     'heatmap_dim': 1000,
     'image_dim': 256,
     'n_cpus': 1,
@@ -65,7 +66,6 @@ DATA_DEFAULTS = {
     'frag_len': 50,
     'signal_vmax': {channel: 200 for channel in Channel.__members__} | {"SM": 100, "RD_DIV_RD": 1, "LL_RR_LR": 1}
 }
-
 MODEL_DEFAULTS = {
     'batch_size': 16,
     'sigma': 10,
@@ -86,6 +86,7 @@ GENERATE_DEFAULTS.update({
 })
 TRAIN_DEFAULTS = {**SHARED_DEFAULTS, **MODEL_DEFAULTS}
 TRAIN_DEFAULTS.update({
+    'num_epochs': 16,
     'report_interval': 50,
     'model_checkpoint_interval': 10000,
     'plot_confidence_maps': False,

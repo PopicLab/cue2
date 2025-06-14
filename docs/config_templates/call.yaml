@@ -1,0 +1,5 @@
+bam: "/path/to/bam"
+chr_names: null  # null to include all chromosomes
+model_path: "/path/to/model/"
+fa: "/path/to/reference/fasta"
+n_cpus: 24

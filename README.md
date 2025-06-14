@@ -34,13 +34,13 @@
 * To generate a training dataset: ```$> cue generate --config </path/to/config>```
 
 Each ```cue``` command accepts a YAML file with configuration parameters. Template config files are provided in the 
-```config/``` directory. 
+```docs/config_templates/``` directory.
 
 The key parameters for each ```cue``` command are listed below.
 
 ```call```:
 * ```bam``` [*required*] path to the alignments file (BAM/CRAM format)
-* ```fai``` [*required*] path to the reference FASTA FAI file
+* ```fa``` [*required*] path to the reference FASTA file
 * ```chr_names``` [*optional*] list of chromosomes to process: null (all) or a specific list e.g. ["chr1", "chr21"] (default: null)
 * ```model_path``` [*required*] path to the pretrained Cue model (recommended: the latest available model)
 * ```gpu_ids``` [*optional*] list of GPU ids to use for calling (default: CPU(s) will be used if empty)
@@ -49,13 +49,14 @@ The key parameters for each ```cue``` command are listed below.
 
 ```train```:
 * ```dataset_dirs``` [*required*] list of annotated imagesets to use for training
+* ```dataset_lens``` [*required*] list containing the number of images to select from each imageset listed in ```dataset_dirs```
 * ```gpu_ids```  [*optional*] GPU id to use for training -- a CPU will be used if empty
 * ```report_interval``` [*optional*] frequency (in number of batches) for reporting training stats and image predictions (default: 50)
 
 ```generate```:
 * ```bam``` [*required*] path to the alignments file (BAM/CRAM format)
-* ```vcf``` [*required*] path to the ground truth SV BED or VCF file
-* ```fai``` [*required*] path to the reference FASTA FAI file
+* ```vcf``` [*required*] path to the ground truth SV VCF file
+* ```fa``` [*required*] path to the reference FASTA file
 * ```n_cpus```  [*optional*] number of CPUs to use for image generation (parallelized by chromosome) (default: 1)
 * ```chr_names``` [*optional*] list of chromosomes to process: null (all) or a specific list e.g. ["chr1", "chr21"] (default: null)
 

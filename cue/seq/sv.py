@@ -61,7 +61,7 @@ class SV:
         assert chrA == chrB, "Only breakpoints on the same chromosome are currently supported: %s" % rec
         assert gt in ["0/1", "1/0", "1/1"], "Unexpected genotype value: %s" % rec
         gt = gt.strip().split("/")
-        return SV(type, chrA, int(startA), int(startB), None, (gt[0], gt[1]))
+        return SV(type, chrA, int(startA), int(startB), None, (int(gt[0]), int(gt[1])))
 
     def assign_internal_type(self):
         gt_token = "" if self.gt == (None, None) else "_HOM" if self.gt == (1, 1) else "_HET"

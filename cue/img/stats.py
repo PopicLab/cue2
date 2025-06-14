@@ -38,9 +38,9 @@ class DatasetStats:
         self.num_images += dataset_stats.num_images
         self.no_labels += dataset_stats.no_labels
         self.svs.update(dataset_stats.svs)
-        self.sv2count = {sv_type: dataset_stats.sv2count[sv_type] for sv_type in dataset_stats.sv2count}
-        self.sv2count_all = {sv_type: dataset_stats.sv2count[sv_type] for sv_type in dataset_stats.sv2count_all}
-        self.sv2len = {sv_type: dataset_stats.sv2len[sv_type] for sv_type in dataset_stats.sv2len}
+        self.sv2count.update({k: self.sv2count[k] + dataset_stats.sv2count[k] for k in dataset_stats.sv2count})
+        self.sv2count_all.update({k: self.sv2count_all[k] + dataset_stats.sv2count_all[k] for k in dataset_stats.sv2count_all})
+        self.sv2len.update({k: self.sv2len[k] + dataset_stats.sv2len[k] for k in dataset_stats.sv2len})
 
     def update(self, target, image=None):
         if target is None: return
